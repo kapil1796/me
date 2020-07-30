@@ -149,8 +149,7 @@
     <div id="contact">
         <h2>Get in Touch</h2>
         <div id="contact-form">
-            <form method="POST" action="mailto:mr.kapilkataria@gmail.com">
-                <input type="hidden" name="_subject" value="Contact request from personal website" />
+            <form method="POST" name="google-sheet">
                 <textarea name="message" placeholder="Your message" required></textarea>
                 <button type="submit">Send</button>
             </form>
@@ -192,6 +191,17 @@
         </div>
     </footer>
     <!-- End footer -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyFjnGHBS5ENNOzTEDAmAbp9QBDrgkOEU5D1vnhP-nGENq005hd/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/scripts.min.js"></script>
